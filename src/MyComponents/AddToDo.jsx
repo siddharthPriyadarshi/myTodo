@@ -12,8 +12,8 @@ export default function AddToDo({addTodo}) {
     }
     else{
       addTodo(title, desc);
-      setTitle("") 
-      setDesc("")
+      setTitle("");
+      setDesc("");
     }    
   };
   return (
