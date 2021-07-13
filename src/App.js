@@ -2,16 +2,41 @@ import './App.css';
 import Header from './MyComponents/Header.js'
 import Footer from './MyComponents/Footer.js'
 import Todos from './MyComponents/Todos.js'
+import AddToDo from './MyComponents/AddToDo.jsx';
+import React, { useState } from 'react';
 
 function App() {
+  const addTodo = (title, desc) =>{
+    let sno;
+    if (todos.length === 0){
+      sno = 1;
+    }
+    else{
+      sno = todos[todos.length - 1].sno +1;
+    }
+    const myTodo = {
+      sno: sno,
+      title: title,
+      description: desc  
+    }
+    setTodos([...todos, myTodo]);
+  };
+
+  const onDelete = (todo)=> {
+    setTodos(todos.filter((e) => {
+      return (e !== todo)
+    }))
+  };
+
+    const [todos, setTodos] = useState([]);
+
   return ( 
     <>
       <Header/>
-      <Todos/>
+      <AddToDo addTodo = {addTodo}/>
+      <Todos todos = {todos} onDelete= {onDelete}/>
       <Footer/>
-
-    </>
-    
+    </>   
   );
 }
 
